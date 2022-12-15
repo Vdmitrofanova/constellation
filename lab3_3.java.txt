@@ -1,0 +1,36 @@
+import java.util.*;
+public class Lab3 {
+    static final int ARR_MAX = 200000;
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print(" Введите массив: ");
+        String array_numberss = in.nextLine();     //// Это понадобится нам в конце чтобы целые числа выводились не как "3.0", а "3"
+        String[] numbers = array_numberss.split("\\s+");
+        Scanner array_numbers = new Scanner(array_numberss); /// строка с числами массива
+
+        double[] array = new double[ARR_MAX]; //// Создаем массив из чисел, если числа введены правильно он будет заполнен
+        int id = 0;
+        while (array_numbers.hasNextDouble()) {
+            array[id++] = array_numbers.nextDouble();
+        }
+
+        int size = id;
+        System.out.print("Исходный массив: ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(numbers[i]);
+            if (i + 1 != size) System.out.print(", ");
+        }
+
+        System.out.println();
+
+        double previous = array[0];
+        System.out.print("Массив после обработки: ");
+        for (int i = 0; i < size; i++) {
+            if (i != 0 && (array[i] - previous) >= 0) System.out.print(", ");
+            if ((array[i] - previous) < 0) continue;   /// Проверка на то, что одно число меньше другого
+            System.out.print(numbers[i]);  //// вывожу numbers потому что если выводить array и число целое то виесто того чтобы вывести "3" выводит "3.0"
+            previous = array[i];
+        }
+    }
+}

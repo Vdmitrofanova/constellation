@@ -1,0 +1,39 @@
+import java.util.*;
+public class Lab2 {
+    static final int ARR_MAX = 200000; /// Неизменяемая переменная
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print(" Введите массив: ");
+        Scanner array_numbers = new Scanner(in.nextLine()); /// в первой линии вводятся значения массива, создала новый сканнер для этой линии потому что размер вводных данных неизвестен
+
+        int[] array = new int[ARR_MAX];         /// ARR_MAX это максимально допустимый размер массива
+        int id = 0;
+        while (array_numbers.hasNextInt()) {    /// Проверяет являются ли числами
+            array[id++] = array_numbers.nextInt();
+        }
+
+        System.out.print("Число к удалению: ");
+        int target = 0; //// Число которое нужно удалить
+        try {
+            int test = in.nextInt(); //// Число о формате вводных данных которого ничего не говорится в условии, которое мы проверяем
+            target = test;
+        } catch (InputMismatchException ex) {    /// Если некорректно ввели число
+            System.out.println("Введите корректно числа");
+            System.exit(0);
+        }
+
+        int size = id;
+        System.out.print("Исходный массив: ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[i] + " ");
+        }
+
+        System.out.println();
+
+        System.out.print("Массив после обработки: ");
+        for (int i = 0; i < size; i++) {
+            if (array[i] == target) continue;   //// continue игнорирует всё что ниже и начинает цикл заново с новым шагом, то есть мы ничего не удаляем а просто не показываем на экран числа которые нужно удалить
+            System.out.print(array[i] + " ");
+        }
+    }
+}
